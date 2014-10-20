@@ -125,6 +125,17 @@ func httpStreamer(w http.ResponseWriter, req *http.Request, logstream chan *Log,
 	}
 }
 
+func cloudWatchStreamer(target Target, types []string,
+	logstream chan *Log, cloudwatch *CloudWatchManager) {
+	typestr := "," + strings.Join(types, ",") + ","
+	for logline := range logstream {
+		if typestr != ",," && !strings.Contains(typestr, logline.Type) {
+			continue
+		}
+		cloudwatch.HandleLogEvent(&target, logline)
+	}
+}
+
 func main() {
 	debugMode = getopt("DEBUG", "") != ""
 	port := getopt("PORT", "8000")
