@@ -22,13 +22,18 @@ type RouteStore interface {
 
 type RouteManager struct {
 	sync.Mutex
-	persistor RouteStore
-	attacher  *AttachManager
-	routes    map[string]*Route
+	persistor  RouteStore
+	attacher   *AttachManager
+	routes     map[string]*Route
+	cloudwatch *CloudWatchManager
 }
 
 func NewRouteManager(attacher *AttachManager) *RouteManager {
-	return &RouteManager{attacher: attacher, routes: make(map[string]*Route)}
+	return &RouteManager{
+		attacher:   attacher,
+		routes:     make(map[string]*Route),
+		cloudwatch: NewCloudWatchManager(attacher),
+	}
 }
 
 func (rm *RouteManager) Load(persistor RouteStore) error {
@@ -80,7 +85,12 @@ func (rm *RouteManager) Add(route *Route) error {
 	go func() {
 		logstream := make(chan *Log)
 		defer close(logstream)
-		go syslogStreamer(route.Target, types, logstream)
+		if route.Target.Type == `cloudwatch` {
+			rm.cloudwatch.setupAWS(route.Target)
+			go cloudWatchStreamer(route.Target, types, logstream, rm.cloudwatch)
+		} else {
+			go syslogStreamer(route.Target, types, logstream)
+		}
 		rm.attacher.Listen(route.Source, logstream, route.closer)
 	}()
 	if rm.persistor != nil {
