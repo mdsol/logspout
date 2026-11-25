@@ -1,18 +1,34 @@
 module github.com/gliderlabs/logspout
 
-go 1.13
+go 1.26.0
 
 require (
-	github.com/Sirupsen/logrus v0.10.1-0.20160601113210-f3cfb454f4c2 // indirect
-	github.com/aws/aws-sdk-go v1.31.9
-	github.com/docker/docker v1.4.2-0.20160708193732-ad969f1aa782 // indirect
-	github.com/docker/engine-api v0.3.2-0.20160708123604-98348ad6f9c8 // indirect
-	github.com/docker/go-units v0.3.1 // indirect
-	github.com/fsouza/go-dockerclient v0.0.0-20160624230725-1a3d0cfd7814
-	github.com/gorilla/context v0.0.0-20160525203319-aed02d124ae4 // indirect
-	github.com/gorilla/mux v0.0.0-20160605233521-9fa818a44c2b
-	github.com/hashicorp/go-cleanhttp v0.0.0-20160407174126-ad28ea4487f0 // indirect
+	github.com/aws/aws-sdk-go v1.55.8
+	github.com/fsouza/go-dockerclient v1.13.3
+	github.com/gorilla/mux v1.8.1
 	github.com/looplab/logspout-logstash v0.0.0-20171130125839-68a4e47e757d
-	github.com/opencontainers/runc v1.0.0-rc1.0.20160706165155-9d7831e41d3e // indirect
-	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
+	golang.org/x/net v0.63.0
+)
+
+require (
+	github.com/Azure/go-ansiterm v0.0.0-20250102033503-faa5f7b0171c // indirect
+	github.com/Microsoft/go-winio v0.6.2 // indirect
+	github.com/containerd/log v0.1.0 // indirect
+	github.com/docker/go-units v0.5.0 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/klauspost/compress v1.18.7 // indirect
+	github.com/moby/go-archive v0.3.3 // indirect
+	github.com/moby/moby/api v1.55.0 // indirect
+	github.com/moby/moby/client v0.5.1 // indirect
+	github.com/moby/patternmatcher v0.6.1 // indirect
+	github.com/moby/sys/sequential v0.7.0 // indirect
+	github.com/moby/sys/user v0.4.1 // indirect
+	github.com/moby/sys/userns v0.2.1 // indirect
+	github.com/moby/term v0.5.2 // indirect
+	github.com/opencontainers/go-digest v1.0.0 // indirect
+	github.com/opencontainers/image-spec v1.1.1 // indirect
+	github.com/sirupsen/logrus v1.9.4 // indirect
+	github.com/stretchr/testify v1.11.1 // indirect
+	golang.org/x/sys v0.50.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

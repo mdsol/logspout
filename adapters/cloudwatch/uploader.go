@@ -104,7 +104,7 @@ func (u *Uploader) Start() {
 				msg.Group, msg.Stream, len(batch.Msgs), batch.Size)
 			resp, err := u.svc.PutLogEvents(params)
 			if err != nil {
-				u.log(err.Error())
+				u.log("%s", err.Error())
 				u.log("Dropping %d messages", len(events))
 				continue
 			}
